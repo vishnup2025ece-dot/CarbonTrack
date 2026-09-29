@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Track</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <div class="brand">
+        <div class="logo">CT</div>
+        <div>
+            <h1>Carbon Track</h1>
+            <p>Household Carbon Footprint Calculator</p>
+        </div>
+    </div>
+    <span class="status" id="status">API Ready</span>
+</header>
+
+<main>
+    <section class="hero">
+        <div>
+            <span class="eyebrow">JAVA + DBMS PROJECT</span>
+            <h2>Measure your footprint.<br><span>Take greener challenges.</span></h2>
+            <p>Enter household activity data to estimate CO₂e emissions and track simple actions that can reduce environmental impact.</p>
+        </div>
+        <div class="hero-card">
+            <span>Latest footprint</span>
+            <strong id="heroTotal">0.00</strong>
+            <small>kg CO₂e</small>
+        </div>
+    </section>
+
+    <section class="grid">
+        <div class="card calculator">
+            <div class="section-title">
+                <div>
+                    <h3>Calculate footprint</h3>
+                    <p>Enter your household's activity values.</p>
+                </div>
+                <span class="badge">CO₂e</span>
+            </div>
+
+            <form id="carbonForm">
+                <label>Household name
+                    <input type="text" id="householdName" placeholder="e.g. My Home" required>
+                </label>
+
+                <div class="form-grid">
+                    <label>Electricity <span>kWh</span>
+                        <input type="number" id="electricityKwh" min="0" step="0.01" value="0">
+                    </label>
+                    <label>LPG <span>kg</span>
+                        <input type="number" id="lpgKg" min="0" step="0.01" value="0">
+                    </label>
+                    <label>Petrol <span>litres</span>
+                        <input type="number" id="petrolLitres" min="0" step="0.01" value="0">
+                    </label>
+                    <label>Diesel <span>litres</span>
+                        <input type="number" id="dieselLitres" min="0" step="0.01" value="0">
+                    </label>
+                    <label>Water <span>litres</span>
+                        <input type="number" id="waterLitres" min="0" step="1" value="0">
+                    </label>
+                    <label>Waste <span>kg</span>
+                        <input type="number" id="wasteKg" min="0" step="0.01" value="0">
+                    </label>
+                </div>
+
+                <button class="primary" type="submit">Calculate & Save</button>
+            </form>
+        </div>
+
+        <div class="card result-card">
+            <div class="section-title">
+                <div>
+                    <h3>Your result</h3>
+                    <p>Estimated household emissions.</p>
+                </div>
+            </div>
+            <div class="big-number" id="totalCo2">0.00</div>
+            <div class="unit">kg CO₂e</div>
+            <div class="meter"><div id="meterBar"></div></div>
+            <p class="hint" id="resultMessage">Enter your data and calculate to see your result.</p>
+        </div>
+    </section>
+
+    <section class="card">
+        <div class="section-title">
+            <div>
+                <h3>Green challenges</h3>
+                <p>Complete actions and earn points.</p>
+            </div>
+            <div class="score">Points <strong id="points">0</strong></div>
+        </div>
+        <div id="challengeList" class="challenge-list"></div>
+    </section>
+
+    <section class="card">
+        <div class="section-title">
+            <div>
+                <h3>Saved calculations</h3>
+                <p>Your records stored in MySQL.</p>
+            </div>
+            <button class="secondary" onclick="loadCalculations()">Refresh</button>
+        </div>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr><th>Household</th><th>CO₂e (kg)</th><th>Date</th><th>Action</th></tr>
+                </thead>
+                <tbody id="calculationTable"></tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+<footer>Carbon Track • Spring Boot + MySQL + HTML/CSS/JS</footer>
+<script src="app.js"></script>
+</body>
+</html>
